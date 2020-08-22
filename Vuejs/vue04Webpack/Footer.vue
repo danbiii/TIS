@@ -1,7 +1,7 @@
 <template>
-  <div class="jumbotron text-center" style="margin-bottom:0">
+  <footer class="jumbotron text-center" style="margin-bottom:0">
     <h1>Footer.vue</h1>
-  </div>
+  </footer>
 </template>
 
 <script>

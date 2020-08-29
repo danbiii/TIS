@@ -21,7 +21,7 @@
 
         Vue 라이프 사이클 mounted 단계가 실행되게 하려면 어떻게 하면 되는가?
         
-        mounted 단계는 화면의 일부분이 새로고침(렌더링)되는 것을 의미한다. 
+        updated 단계는 화면의 일부분이 새로고침(렌더링)되는 것을 의미한다. 
         
         기능 추가
             1. 버튼을 만들고 클릭 이벤트를 설정한다.
@@ -34,10 +34,78 @@
 
     <div id="app">
         {{ message }}
-        <!-- 버튼 기능 추가-->
+        <!-- 버튼 기능 추가--><br>
+        <button v-on:click="btn">button</button>
     </div>
 </body>
 
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        el: "#app",
+
+        data: {
+            message: "hello"
+        },
+
+
+        template: null,
+
+        methods: {
+            btn: function (event) {
+                console.log("btnclock");
+                var time = new Date().toTimeString();
+                this.$data.message = "유혜원";
+            },
+
+            mounted: function () {
+                console.log("mounted");
+                this.$data.message = "change a data at mounted";
+            }
+
+        },
+        computed: {
+
+        },
+        component: null,
+
+        watch: {
+
+        },
+
+        //문서를 불러오면 나옴
+        beforeCreate: function () {
+            console.log("beforeCreate");
+        },
+        created: function () {
+            console.log("created");
+        },
+
+        beforeMount: function () {
+            console.log("beforeMount");
+        },
+        mounted: function () {
+            console.log("mounted");
+        },
+
+        //이벤트를 실행하면 나옴
+        beforeUpdate: function () {
+            console.log("beforeUpdate");
+        },
+        updated: function () {
+            console.log("updated");
+        },
+
+        beforeDestroy: function () {
+            console.log("beforeDestroy");
+        },
+        destroyed: function () {
+            console.log("destroyed");
+        },
+
+    })
+
+</script>

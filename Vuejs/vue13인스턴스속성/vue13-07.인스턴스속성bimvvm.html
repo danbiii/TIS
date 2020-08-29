@@ -34,31 +34,52 @@
 
 </html>
 
+
+
 <!-- vue 스크립트 플러그인 임포트   -->
 <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
 <script>
-    new Vue({
+    var vm = new Vue({
         el: "#my",
+
+        /*
+        data 값을 바꿀 때
+        "=" 을 사용하는 경우 : string, number, boolean
+        Vue.set을 사용하는 경우 : 배열, 객체 (array, object)
+        */
+
         data: {
             message: "change message at mounted!!!"
         },
         methods: {
-
             doClick: function (event) {
-                this.$data.message = "change message when a button clicked!!!";
-                //console.log("change3"); 정상작동 확인
+                this.$data.message = "change message when a button clicked!!!"
+            }
+        },
 
-                /*
-                data 값을 바꿀 때
-                "=" 을 사용하는 경우 : string, number, boolean
-                Vue.set을 사용하는 경우 : 배열, 객체 (array, object)
-                */
-            },
-            /*
-                        window.setTimeout(3000){
-                           this.$data.message = "change message after 3 seconds!!!"
-                         },
-            */
+        mounted: function (event) {
+
+            window.setTimeout(function () {
+                vm.$data.message = "change message after 3 seconds!!!";
+            }, 3000); //3000ms = 3s
+
+            window.setTimeout(function () {
+                vm.$data.message = "change message after 5 seconds!!!";
+            }, 5000);
+
         }
+
     })
+
+    /*
+    window.setTimeout(function () {
+        vm.$data.message = "change message after 3 seconds!!!";
+    }, 3000);
+    //방법2 안에서
+    // this.$date.message = "change message after 3 seconds!!!";
+
+    window.setTimeout(function () {
+        vm.$data.message = "change message after 5 seconds!!!";
+    }, 5000);
+*/
 </script>

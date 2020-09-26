@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        * {
+            border-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        header {
+            border: 3px dotted orange;
+            height: 100px;
+        }
+
+        nav {
+            border: 3px dotted gray;
+            margin: 10px;
+            height: 50px;
+        }
+
+        article {
+            border: 3px dotted lightblue;
+            display: inline-block;
+            float: left;
+            width: 75%;
+            height: 300px;
+        }
+
+        aside {
+            border: 3px dotted violet;
+            display: inline-block;
+            width: 22%;
+            float: right;
+            height: 100px;
+        }
+
+        footer {
+            clear: both;
+            border: 3px dotted pink;
+            height: 50px;
+        }
+
+        figure {
+            border: 3px dotted rgb(160, 186, 235);
+            height: 50px;
+            margin: 120px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <top></top>
+
+        <contents></contents>
+
+        <foot></foot>
+
+    </div>
+
+</body>
+
+</html>
+
+<!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+
+    Vue.component("top-nav", {
+        template: `
+        <nav>
+                nav
+            </nav>
+        `,
+    });
+    Vue.component("top", {
+        template: `
+        <header>
+            header
+            <top-nav></top-nav>
+        </header>
+        `,
+    });
+
+    Vue.component("a-figure", {
+        template: `
+        <figure>
+                    figure
+                </figure>
+        `,
+    });
+
+    Vue.component("contents-article", {
+        template: `
+        <article>
+                article
+                <a-figure></a-figure>
+            </article>
+        `,
+    });
+
+    Vue.component("contents-aside", {
+        template: `
+        <aside>
+                aside
+            </aside>
+        `,
+    });
+
+    Vue.component("contents", {
+        template: `
+        <div>
+            <contents-article></contents-article>
+            <contents-aside></contents-aside>
+        </div>
+        `,
+    });
+
+    Vue.component("foot", {
+        template: `
+        <footer>
+            footer
+        </footer>
+        `,
+    });
+
+    new Vue({
+        el: "#app",
+        data: {},
+    });
+
+</script>

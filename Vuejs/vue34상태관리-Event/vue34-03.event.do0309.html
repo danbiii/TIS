@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="../css/reset.css">
 
 </head>
+
 <body>
     <pre>
 
@@ -29,13 +31,53 @@
       [참조]page 62~75
     </pre>
 
-      <img src="../images/components_parent_child.png" alt="" srcset="">
+    <img src="../images/components_parent_child.png" alt="" srcset="">
     <hr>
     <div id="app">
         <child-component v-on:show-log="printText"></child-component>
     </div>
 
 </body>
+
 </html>
 
 <!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js"> /* vue 플러그인 임포트 */</script>
+<script>
+
+    Vue.component("child-component", {
+        probs: [],
+        data: function () {
+            return {
+
+            }
+        },
+        template: `
+        <div>
+            <button v-on:click="showLog">show</button>
+        </div>
+        `,
+        methods: {
+            showLog: function () {
+                /*//this.$emit("이벤트명", 이벤트값 들);
+                //showLog라는 사용자 이벤트를 발생시키고 "abc"와 123을 이벤트 전달하시오.*/
+                this.$emit("showLog", "abc", 123, 'kkk');
+            }
+        },
+    });
+    //왜안돼??
+    new Vue({
+        el: "#app",
+        data: {},
+        template: null,
+        methods: {
+            printText: function (arg1, arg2) {
+                //사용자 이벤트 핸들러
+                console.log("printText", arg1, arg2,);
+                console.log("printText", arguments);
+            }
+        },
+        computed: {},
+        watch: {},
+    });
+</script>

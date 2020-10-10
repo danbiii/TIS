@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/reset.css" />
+
+</head>
+
+<body>
+
+    <pre>
+
+        클래스 컴포넌트 생명주기 단계별 이벤트 등록과 해제를 학습한다.
+            componentDidMount : resize 이벤트 등록
+            componentWillUnmount : resize 이벤트 해제
+    </pre>
+    <hr>
+    <div id="app">
+    </div>
+</body>
+
+</html>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/*import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+
+<script type="text/babel">
+
+    //import React, { Component } from 'react';
+    //import ReactDOM from 'react-dom'
+    console.log(React);
+    console.log(React.Component);
+    console.log(ReactDOM);
+
+    class WidthPrint extends React.Component {
+
+        static defaultProps = {  /*  props의 디폴트 값 설정 */ }
+        static propsTypes = {  /* props의 프로퍼티 타입 설정 */ }
+        state = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+        constructor(props) {
+            super(props);
+            // this 바인딩
+
+        }
+        componentDidMount() {
+            // 마운트 완료 후에 : 한 번만
+            //resize 이벤트 핸들러 등록
+            window.addEventListener("resize", this.onResize, true);
+        }
+        componentDidUpdate(prevProps, prevState) {
+            // 업데이트 완료 후에 : 여러번, state가 변경 될 때 마다 사용
+        }
+        componentWillUnmount() {
+            // 언마운트 완료 후에 : 페이지 unload 될 때 한 번.
+            //resize 이벤트 핸들러 해제
+            window.removeEventListener("resize", this.onResize);
+        }
+
+        handler = (e) => {
+            onResize = (event) => {
+                console.log("onResize");
+                this.setState({
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                })
+            }
+        }
+
+        render() {
+            return (
+                <div>
+                    width is {this.state.width}<br />
+                        height is {this.state.height}
+                </div>
+            );
+        }
+    }
+
+    //export default WidthPrint;
+    ReactDOM.render(
+        <WidthPrint></WidthPrint>,
+        document.getElementById("app")
+    )
+
+    //자동으로 왜 안바뀜???
+</script>

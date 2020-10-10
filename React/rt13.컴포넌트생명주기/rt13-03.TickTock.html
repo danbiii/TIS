@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tick Tock</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
+    <link rel="stylesheet" href="../css/reset.css" />
 </head>
 
 <body>
@@ -29,3 +29,66 @@
 </html>
 
 <!-- react 플러그인 include   -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"> /* import { React} from 'react'; */</script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">/*import { ReactDOM } from 'react-dom'; */</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">/* JSX를 자바스크립트로 변환 */</script>
+
+<script type="text/babel">
+
+    //import React, { Component } from 'react';
+    //import ReactDOM from 'react-dom'
+    class TickTok extends React.Component {
+
+        static defaultProps = {  /*  props의 디폴트 값 설정 */ }
+        static propsTypes = {  /* props의 프로퍼티 타입 설정 */ }
+        state = {
+            counter: 0,
+            timer: null, //
+        }
+        constructor(props) {
+            super(props);
+            // this 바인딩
+
+        }
+
+        tick = () => {
+            this.setState({
+                counter: this.state.counter + 1
+            })
+        }
+        componentDidMount() {
+            // 마운트 완료 후에 : 한 번만
+            let aaa = setInterval(this.tick, 1000)
+            this.setState({
+                timer: aaa
+            })
+
+        }
+        componentDidUpdate(prevProps, prevState) {
+            // 업데이트 완료 후에 : 여러번, state가 변경 될 때 마다 사용
+            console.log("componentDidUpdate");
+
+        }
+        componentWillUnmount() {
+            // 언마운트 완료 후에 : 페이지 unload 될 때 한 번.
+
+        }
+
+        handler = (e) => {
+            // 이벤트 핸들러를 화살표 함수로 만들면 constructor(생성자)에서 this를 bind() 생략해도 된다.
+        }
+        render() {
+            return (
+                <div>
+                    currunt counter. {this.state.counter}
+                </div>
+            );
+        }
+    }
+
+    //export default TickTok;
+
+    ReactDOM.render(<TickTok></TickTok>, document.getElementById("app"))
+</script>
